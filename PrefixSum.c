@@ -4,7 +4,7 @@
  Author      : 
  Version     :
  Copyright   : Your copyright notice
- Description : Hello MPI World in C 
+ Description : Prefix Sum.
  ============================================================================
  */
 #include <stdio.h>
@@ -14,10 +14,6 @@
 int main(int argc, char* argv[]){
 	int  my_rank; /* rank of process */
 	int  p;       /* number of processes */
-	int source;   /* rank of sender */
-	int dest;     /* rank of receiver */
-	int tag=0;    /* tag for messages */
-	char message[100];        /* storage for message */
 	MPI_Status status ;   /* return status for receive */
 	int value;
 
@@ -70,7 +66,6 @@ int main(int argc, char* argv[]){
 				continue;
 
 			int recv_value;
-			MPI_Status status;
 			printf("%d receving..\n", my_rank);
 			MPI_Recv(&recv_value, 1, MPI_INT, (my_rank - pow(2,i)), 0, MPI_COMM_WORLD, &status);
 			value += recv_value;
